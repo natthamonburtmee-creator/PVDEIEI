@@ -299,7 +299,6 @@ div[data-testid="stMetricValue"] { color:#4A2E1E; }
 # ============================================================
 # HERO HEADER
 # ============================================================
-_hero_mascot = mascot_svg("engineer", 92)
 st.markdown(f"""
 <div class="hero" style="position:relative; overflow:visible;">
     <div class="badge">GROUND IMPROVEMENT • GEOTECHNICAL DESIGN TOOL</div>
