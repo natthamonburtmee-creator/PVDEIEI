@@ -27,56 +27,129 @@ st.set_page_config(
 )
 
 # ============================================================
-# CUTE MASCOT (original, hand-drawn SVG — no copyrighted characters)
+# CUTE MASCOT (original, hand-drawn SVG — engineering & soil themed)
 # ============================================================
-def mascot_svg(kind="cat", size=110):
+def mascot_svg(kind="engineer", size=110):
     """
-    Returns an inline SVG of a simple, original cute mascot.
-    kind: 'cat' | 'bear' | 'bunny' | 'panda'
+    Returns an inline SVG of a simple, original cute mascot themed around
+    civil engineering / geotechnical work — drawn in a blocky, angular
+    (low-poly) cute style.
+    kind: 'engineer' | 'soil' | 'drain' | 'surveyor'
     """
-    palette = {
-        "cat":   {"face": "#FFD9E8", "ear": "#FF9FC7", "blush": "#FF7FAF"},
-        "bear":  {"face": "#F3D9B1", "ear": "#E0B287", "blush": "#F0977A"},
-        "bunny": {"face": "#E8E4FF", "ear": "#C9BFFF", "blush": "#FFAFCF"},
-        "panda": {"face": "#FFFFFF", "ear": "#2E2E38", "blush": "#FF9FC7"},
-    }
-    c = palette.get(kind, palette["cat"])
-    ear_shape = (
-        f'<circle cx="34" cy="30" r="16" fill="{c["ear"]}"/>'
-        f'<circle cx="86" cy="30" r="16" fill="{c["ear"]}"/>'
-        if kind != "cat" else
-        f'<path d="M20 40 L34 6 L48 38 Z" fill="{c["ear"]}"/>'
-        f'<path d="M100 40 L86 6 L72 38 Z" fill="{c["ear"]}"/>'
-    )
-    panda_patches = (
-        f'<ellipse cx="42" cy="58" rx="10" ry="13" fill="{c["ear"]}"/>'
-        f'<ellipse cx="78" cy="58" rx="10" ry="13" fill="{c["ear"]}"/>'
-        if kind == "panda" else ""
-    )
-    whiskers = (
-        '<line x1="6" y1="70" x2="28" y2="66" stroke="#d98db0" stroke-width="2" stroke-linecap="round"/>'
-        '<line x1="6" y1="80" x2="28" y2="80" stroke="#d98db0" stroke-width="2" stroke-linecap="round"/>'
-        '<line x1="114" y1="70" x2="92" y2="66" stroke="#d98db0" stroke-width="2" stroke-linecap="round"/>'
-        '<line x1="114" y1="80" x2="92" y2="80" stroke="#d98db0" stroke-width="2" stroke-linecap="round"/>'
-        if kind == "cat" else ""
-    )
     eye_color = "#2E2E38"
-    svg = f'''
-    <svg width="{size}" height="{size}" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-        {ear_shape}
-        <circle cx="60" cy="66" r="46" fill="{c["face"]}"/>
-        {panda_patches}
-        {whiskers}
-        <circle cx="42" cy="62" r="6" fill="{eye_color}"/>
-        <circle cx="78" cy="62" r="6" fill="{eye_color}"/>
-        <circle cx="44" cy="60" r="1.8" fill="white"/>
-        <circle cx="80" cy="60" r="1.8" fill="white"/>
-        <ellipse cx="30" cy="76" rx="7" ry="5" fill="{c["blush"]}" opacity="0.7"/>
-        <ellipse cx="90" cy="76" rx="7" ry="5" fill="{c["blush"]}" opacity="0.7"/>
-        <path d="M52 80 Q60 88 68 80" stroke="{eye_color}" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <ellipse cx="60" cy="72" rx="4" ry="3" fill="{eye_color}"/>
-    </svg>
-    '''
+
+    if kind == "engineer":
+        # blocky engineer face with a square-ish hard hat + angular vest collar
+        skin = "#FFDCB0"
+        hat = "#FFC93C"
+        hat_shade = "#E8A800"
+        vest = "#FF7A3D"
+        svg = f'''
+        <svg width="{size}" height="{size}" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <!-- vest collar (angular) -->
+            <polygon points="24,110 60,120 96,110 88,92 60,100 32,92" fill="{vest}"/>
+            <rect x="53" y="90" width="14" height="20" fill="#ffffff40"/>
+            <!-- face: blocky octagon -->
+            <polygon points="34,20 86,20 100,34 100,86 86,100 34,100 20,86 20,34"
+                     fill="{skin}"/>
+            <!-- hard hat: angular dome + brim -->
+            <polygon points="18,46 60,10 102,46" fill="{hat}"/>
+            <rect x="14" y="42" width="92" height="12" fill="{hat_shade}"/>
+            <rect x="54" y="16" width="12" height="10" fill="{hat_shade}"/>
+            <!-- eyes: squares -->
+            <rect x="38" y="54" width="12" height="12" fill="{eye_color}"/>
+            <rect x="70" y="54" width="12" height="12" fill="{eye_color}"/>
+            <rect x="41" y="57" width="4" height="4" fill="white"/>
+            <rect x="73" y="57" width="4" height="4" fill="white"/>
+            <!-- blush -->
+            <polygon points="24,72 36,72 32,82 22,82" fill="#FF9E80" opacity="0.6"/>
+            <polygon points="84,72 96,72 98,82 88,82" fill="#FF9E80" opacity="0.6"/>
+            <!-- mouth: angular smile -->
+            <polyline points="44,80 60,90 76,80" fill="none" stroke="{eye_color}"
+                      stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        '''
+
+    elif kind == "soil":
+        # blocky layered soil hexagon with a low-poly sprout
+        soil1 = "#C08552"
+        soil2 = "#A9683A"
+        soil3 = "#8B5E34"
+        sprout = "#5FBE72"
+        svg = f'''
+        <svg width="{size}" height="{size}" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <!-- sprout leaves (triangles) -->
+            <polygon points="60,22 40,8 46,26" fill="{sprout}"/>
+            <polygon points="60,22 80,6 76,26" fill="{sprout}"/>
+            <rect x="56" y="16" width="8" height="14" fill="#3E8E52"/>
+            <!-- hexagonal soil block, layered -->
+            <polygon points="60,26 96,44 96,84 60,102 24,84 24,44" fill="{soil1}"/>
+            <polygon points="24,68 96,68 96,84 60,102 24,84" fill="{soil2}"/>
+            <polygon points="24,84 60,102 96,84 96,92 60,110 24,92" fill="{soil3}"/>
+            <!-- eyes: squares -->
+            <rect x="42" y="54" width="12" height="12" fill="{eye_color}"/>
+            <rect x="66" y="54" width="12" height="12" fill="{eye_color}"/>
+            <rect x="45" y="57" width="4" height="4" fill="white"/>
+            <rect x="69" y="57" width="4" height="4" fill="white"/>
+            <!-- blush -->
+            <polygon points="30,66 40,66 37,74 28,74" fill="#FFD9A0" opacity="0.8"/>
+            <polygon points="80,66 90,66 92,74 83,74" fill="#FFD9A0" opacity="0.8"/>
+            <!-- mouth -->
+            <polyline points="48,72 60,80 72,72" fill="none" stroke="{eye_color}"
+                      stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        '''
+
+    elif kind == "drain":
+        # blocky PVD strip-drain character (angular core + geotextile stripes)
+        body = "#4FC3E8"
+        body_shade = "#3AA9CC"
+        stripe = "#E8F8FF"
+        svg = f'''
+        <svg width="{size}" height="{size}" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <!-- flat drain body: blocky panel with cut corners -->
+            <polygon points="34,14 86,14 96,24 96,100 86,110 34,110 24,100 24,24" fill="{body}"/>
+            <polygon points="24,24 34,14 34,110 24,100" fill="{body_shade}"/>
+            <rect x="42" y="24" width="7" height="76" fill="{stripe}" opacity="0.9"/>
+            <rect x="54" y="24" width="7" height="76" fill="{stripe}" opacity="0.9"/>
+            <rect x="66" y="24" width="7" height="76" fill="{stripe}" opacity="0.9"/>
+            <rect x="78" y="24" width="7" height="76" fill="{stripe}" opacity="0.9"/>
+            <!-- face -->
+            <rect x="42" y="50" width="11" height="11" fill="{eye_color}"/>
+            <rect x="67" y="50" width="11" height="11" fill="{eye_color}"/>
+            <rect x="45" y="53" width="4" height="4" fill="white"/>
+            <rect x="70" y="53" width="4" height="4" fill="white"/>
+            <polygon points="36,64 46,64 43,72 34,72" fill="#FFAFCF" opacity="0.8"/>
+            <polygon points="74,64 84,64 86,72 77,72" fill="#FFAFCF" opacity="0.8"/>
+            <polyline points="48,66 60,74 72,66" fill="none" stroke="{eye_color}"
+                      stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        '''
+
+    else:  # "surveyor" — blocky character with hard hat + angular clipboard
+        skin = "#FFDCB0"
+        hat = "#3DDC97"
+        hat_shade = "#26A876"
+        svg = f'''
+        <svg width="{size}" height="{size}" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="34,20 86,20 100,34 100,86 86,100 34,100 20,86 20,34"
+                     fill="{skin}"/>
+            <polygon points="18,46 60,10 102,46" fill="{hat}"/>
+            <rect x="14" y="42" width="92" height="12" fill="{hat_shade}"/>
+            <!-- clipboard (angular) -->
+            <rect x="80" y="66" width="28" height="34" fill="#ffffff" stroke="{hat_shade}" stroke-width="4"/>
+            <rect x="86" y="76" width="16" height="4" fill="{hat_shade}"/>
+            <rect x="86" y="84" width="16" height="4" fill="{hat_shade}"/>
+            <rect x="86" y="92" width="10" height="4" fill="{hat_shade}"/>
+            <rect x="38" y="54" width="12" height="12" fill="{eye_color}"/>
+            <rect x="70" y="54" width="12" height="12" fill="{eye_color}"/>
+            <rect x="41" y="57" width="4" height="4" fill="white"/>
+            <rect x="73" y="57" width="4" height="4" fill="white"/>
+            <polygon points="24,72 36,72 32,82 22,82" fill="#FF9E80" opacity="0.6"/>
+            <polyline points="44,80 60,90 76,80" fill="none" stroke="{eye_color}"
+                      stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        '''
     return svg
 
 
@@ -84,13 +157,13 @@ def mascot_bubble(kind, message, size=64, align="left"):
     """Renders a cute mascot next to a speech-bubble message."""
     svg = mascot_svg(kind, size)
     direction = "row" if align == "left" else "row-reverse"
-    radius = "18px 18px 18px 4px" if align == "left" else "18px 18px 4px 18px"
+    radius = "6px 18px 18px 18px" if align == "left" else "18px 6px 18px 18px"
     st.markdown(f"""
     <div style="display:flex; flex-direction:{direction}; align-items:center; gap:10px; margin:10px 0;">
         <div style="flex-shrink:0;">{svg}</div>
-        <div style="background:white; border-radius:{radius}; padding:10px 16px;
-                    box-shadow:0 4px 14px rgba(30,40,90,0.10); font-size:0.92rem; color:#3a3d5c;
-                    border:1px solid rgba(120,120,180,0.10);">
+        <div style="background:#FFFCF6; border-radius:{radius}; padding:10px 16px;
+                    box-shadow:0 4px 14px rgba(107,66,38,0.12); font-size:0.92rem; color:#4A3624;
+                    border:1px solid rgba(139,94,52,0.16);">
             {message}
         </div>
     </div>
@@ -107,19 +180,19 @@ html, body, [class*="css"]  {
     font-family: 'Kanit', sans-serif;
 }
 
-/* App background */
+/* App background — warm sand / paper tone */
 .stApp {
-    background: linear-gradient(180deg, #f4f7fb 0%, #eef2f9 100%);
+    background: linear-gradient(180deg, #FBF6EC 0%, #F3E7D3 100%);
 }
 
-/* Hero header */
+/* Hero header — soil strata gradient: bark brown → clay terracotta → moss green */
 .hero {
-    background: linear-gradient(120deg, #6a5ae0 0%, #35b0e0 55%, #33d69f 100%);
+    background: linear-gradient(120deg, #6B4226 0%, #BF6B4D 48%, #7C9459 100%);
     padding: 2.2rem 2.4rem;
     border-radius: 22px;
-    color: white;
+    color: #FFF9F0;
     margin-bottom: 1.6rem;
-    box-shadow: 0 12px 30px rgba(60, 80, 180, 0.25);
+    box-shadow: 0 12px 30px rgba(107, 66, 38, 0.30);
 }
 .hero h1 {
     font-size: 2.1rem;
@@ -128,12 +201,12 @@ html, body, [class*="css"]  {
 }
 .hero p {
     font-size: 1.02rem;
-    opacity: 0.92;
+    opacity: 0.94;
     margin: 0;
 }
 .hero .badge {
     display: inline-block;
-    background: rgba(255,255,255,0.22);
+    background: rgba(255,249,240,0.25);
     padding: 4px 14px;
     border-radius: 999px;
     font-size: 0.8rem;
@@ -141,105 +214,106 @@ html, body, [class*="css"]  {
     letter-spacing: 0.5px;
 }
 
-/* Section header pill (mimics slide title bars) */
+/* Section header pill (mimics slide title bars) — earthy palette */
 .section-pill {
     display: inline-block;
     padding: 8px 22px;
     border-radius: 14px;
     font-weight: 600;
     font-size: 1.05rem;
-    color: white;
+    color: #FFF9F0;
     margin-bottom: 14px;
 }
-.pill-purple  { background: linear-gradient(90deg,#7b5cf0,#4dd0e1); }
-.pill-orange  { background: linear-gradient(90deg,#ffb648,#ff6f91); }
-.pill-green   { background: linear-gradient(90deg,#20c997,#0dcaf0); }
-.pill-pink    { background: linear-gradient(90deg,#ff8fc7,#ffd166); }
-.pill-blue    { background: linear-gradient(90deg,#4facfe,#00f2fe); }
+.pill-purple  { background: linear-gradient(90deg,#8B5E34,#B98B4E); }   /* clay / earth brown */
+.pill-orange  { background: linear-gradient(90deg,#D9834F,#E8B84B); }   /* terracotta / ochre */
+.pill-green   { background: linear-gradient(90deg,#6E8B3D,#A3B565); }   /* moss / sprout green */
+.pill-pink    { background: linear-gradient(90deg,#C1694F,#E8A87C); }   /* rust clay */
+.pill-blue    { background: linear-gradient(90deg,#4A7C6F,#8FA694); }   /* slate / groundwater teal */
 
 /* Metric cards */
 .metric-card {
-    background: white;
+    background: #FFFCF6;
     border-radius: 18px;
     padding: 1.1rem 1.3rem;
-    box-shadow: 0 6px 18px rgba(30,40,90,0.08);
-    border: 1px solid rgba(120,120,180,0.08);
+    box-shadow: 0 6px 18px rgba(107,66,38,0.10);
+    border: 1px solid rgba(139,94,52,0.14);
     height: 100%;
 }
 .metric-card .label {
     font-size: 0.82rem;
-    color: #6b7280;
+    color: #8A7458;
     font-weight: 500;
     margin-bottom: 4px;
 }
 .metric-card .value {
     font-size: 1.6rem;
     font-weight: 700;
-    color: #1f2340;
+    color: #4A2E1E;
 }
 .metric-card .sub {
     font-size: 0.78rem;
-    color: #9aa1b5;
+    color: #A08A6E;
     margin-top: 2px;
 }
 
 .ok-tag {
     display:inline-block; padding: 3px 12px; border-radius: 999px;
     font-size: 0.82rem; font-weight:600;
-    background:#d4f8e8; color:#0a8f5e;
+    background:#DCE9C8; color:#4C6B23;
 }
 .warn-tag {
     display:inline-block; padding: 3px 12px; border-radius: 999px;
     font-size: 0.82rem; font-weight:600;
-    background:#ffe8d4; color:#c25a00;
+    background:#F5E1B8; color:#8A5A00;
 }
 .bad-tag {
     display:inline-block; padding: 3px 12px; border-radius: 999px;
     font-size: 0.82rem; font-weight:600;
-    background:#ffd9dd; color:#c0203a;
+    background:#F3D4C4; color:#8B3A1E;
 }
 
+/* Sidebar — deep soil earth tone */
 section[data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #211f45 0%, #2c2a5e 100%);
+    background: linear-gradient(180deg, #3E2A1E 0%, #4E3524 100%);
 }
 section[data-testid="stSidebar"] * {
-    color: #eef0ff !important;
+    color: #F3E9DA !important;
 }
 section[data-testid="stSidebar"] .stSlider label, 
 section[data-testid="stSidebar"] .stNumberInput label,
 section[data-testid="stSidebar"] .stSelectbox label,
 section[data-testid="stSidebar"] .stRadio label {
-    color: #cfd3ff !important;
+    color: #E3C9A3 !important;
     font-weight: 500;
 }
 
 .footer-note {
-    text-align:center; color:#9aa1b5; font-size:0.8rem; margin-top: 2.5rem;
-    padding-top: 1rem; border-top: 1px solid #e3e6f0;
+    text-align:center; color:#A08A6E; font-size:0.8rem; margin-top: 2.5rem;
+    padding-top: 1rem; border-top: 1px solid #E3D4BC;
 }
 
-div[data-testid="stMetricValue"] { color:#1f2340; }
+div[data-testid="stMetricValue"] { color:#4A2E1E; }
 </style>
 """, unsafe_allow_html=True)
 
 # ============================================================
 # HERO HEADER
 # ============================================================
-_hero_mascot = mascot_svg("cat", 92)
+_hero_mascot = mascot_svg("engineer", 92)
 st.markdown(f"""
 <div class="hero" style="position:relative; overflow:visible;">
     <div class="badge">GROUND IMPROVEMENT • GEOTECHNICAL DESIGN TOOL</div>
     <h1>🧊 PVD Design Studio</h1>
     <p>โปรแกรมออกแบบท่อระบายน้ำแนวดิ่งสำเร็จรูป (Prefabricated Vertical Drains)
     ตามวิธีของ Barron (1948) • Terzaghi • Carillo (1942)</p>
-    <div style="position:absolute; top:-14px; right:22px; background:white; border-radius:50%;
-                padding:6px; box-shadow:0 8px 20px rgba(30,40,90,0.25);">
+    <div style="position:absolute; top:-14px; right:22px; background:#FFFCF6; border-radius:16px;
+                padding:6px; box-shadow:0 8px 20px rgba(107,66,38,0.30); transform: rotate(-3deg);">
         {_hero_mascot}
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-mascot_bubble("cat", "สวัสดีค่า~ 🌟 กรอกพารามิเตอร์ทางซ้ายมือ แล้วมาดูผลออกแบบ PVD กันเลย!", size=58)
+mascot_bubble("engineer", "สวัสดีครับ! 👷‍♂️ ผมวิศวกรผู้ช่วย กรอกพารามิเตอร์ทางซ้ายมือ แล้วมาออกแบบ PVD กันเลย!", size=58)
 
 
 # ============================================================
@@ -303,13 +377,13 @@ def final_settlement(H_cm, Cc, e0, sigma0, dsigma):
 # SIDEBAR — INPUT PARAMETERS
 # ============================================================
 with st.sidebar:
-    _side_mascot = mascot_svg("bear", 84)
+    _side_mascot = mascot_svg("soil", 84)
     st.markdown(f"""
     <div style="text-align:center; margin-bottom:6px;">
-        <div style="background:rgba(255,255,255,0.12); display:inline-block; border-radius:50%; padding:6px;">
+        <div style="background:rgba(255,249,240,0.14); display:inline-block; border-radius:16px; padding:6px;">
             {_side_mascot}
         </div>
-        <div style="color:#cfd3ff; font-size:0.82rem; margin-top:4px;">น้องดินอ่อน ผู้ช่วยออกแบบ 🧸</div>
+        <div style="color:#E3C9A3; font-size:0.82rem; margin-top:4px;">น้องดินอ่อน ผู้ช่วยออกแบบ 🌱</div>
     </div>
     """, unsafe_allow_html=True)
     st.markdown("## ⚙️ พารามิเตอร์ออกแบบ")
@@ -434,9 +508,9 @@ with tab1:
     st.markdown(f"**สถานะการออกแบบเทียบเป้าหมาย {U_target}%:** {status_html}", unsafe_allow_html=True)
 
     if status_ok:
-        mascot_bubble("bunny", f"เย้! 🎉 ระยะห่าง S = {S:.2f} m ให้ Uav = {Uav*100:.1f}% ผ่านเป้าหมายแล้วนะ เก่งมาก!", size=58)
+        mascot_bubble("drain", f"เย้! 🎉 ระยะห่าง S = {S:.2f} m ให้ Uav = {Uav*100:.1f}% ผ่านเป้าหมายแล้วครับ เก่งมาก!", size=58)
     else:
-        mascot_bubble("panda", f"อุ๊ปส์ 🐼 ตอนนี้ได้แค่ {Uav*100:.1f}% ยังไม่ถึง {U_target}% ลองลดระยะห่าง S ดูนะคะ", size=58)
+        mascot_bubble("engineer", f"อุ๊ปส์ 👷 ตอนนี้ได้แค่ {Uav*100:.1f}% ยังไม่ถึง {U_target}% ลองลดระยะห่าง S ดูนะครับ", size=58)
 
     st.write("")
     colA, colB = st.columns([1.1, 1])
@@ -464,6 +538,7 @@ with tab1:
 # TAB 2: BARRON & TERZAGHI STEP-BY-STEP
 # ------------------------------------------------------------
 with tab2:
+    mascot_bubble("surveyor", "มาดูขั้นตอนการคำนวณทีละสูตรกันครับ จะได้เข้าใจที่มาของตัวเลขแต่ละตัว 📋", size=56)
     st.markdown('<div class="section-pill pill-orange">🌀 วิธีของ Barron (การอัดตัวแนวรัศมี)</div>', unsafe_allow_html=True)
     st.latex(r"U_r = 1 - \exp\left(\frac{-8T_r}{F(n)}\right)")
     st.latex(r"F(n) = \frac{n^2}{n^2-1}\ln(n) - \frac{3n^2-1}{4n^2} \qquad n = \frac{d_e}{d_w} \qquad T_r = \frac{C_r \cdot t}{d_e^2}")
@@ -515,14 +590,14 @@ with tab3:
 
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=t_arr, y=Ur_arr * 100, name="Ur (แนวรัศมี - Barron)",
-                              line=dict(color="#7b5cf0", width=3)))
+                              line=dict(color="#8B5E34", width=3)))
     fig.add_trace(go.Scatter(x=t_arr, y=Uv_arr * 100, name="Uv (แนวดิ่ง - Terzaghi)",
-                              line=dict(color="#ff8fc7", width=3, dash="dot")))
+                              line=dict(color="#C1694F", width=3, dash="dot")))
     fig.add_trace(go.Scatter(x=t_arr, y=Uav_arr * 100, name="Uav (รวม - Carillo)",
-                              line=dict(color="#20c997", width=4)))
-    fig.add_hline(y=U_target, line_dash="dash", line_color="#c0203a",
+                              line=dict(color="#6E8B3D", width=4)))
+    fig.add_hline(y=U_target, line_dash="dash", line_color="#8B3A1E",
                   annotation_text=f"เป้าหมาย {U_target}%", annotation_position="bottom right")
-    fig.add_vline(x=t_design, line_dash="dash", line_color="#9aa1b5",
+    fig.add_vline(x=t_design, line_dash="dash", line_color="#A08A6E",
                   annotation_text=f"t = {t_design} วัน", annotation_position="top left")
 
     fig.update_layout(
@@ -534,6 +609,8 @@ with tab3:
         height=480,
         margin=dict(t=40, l=10, r=10, b=10),
         font=dict(family="Kanit"),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="#FFFCF6",
     )
     st.plotly_chart(fig, use_container_width=True)
 
@@ -541,8 +618,8 @@ with tab3:
     St_arr = Uav_arr * Sfinal_cm
     fig2 = go.Figure()
     fig2.add_trace(go.Scatter(x=t_arr, y=St_arr, fill='tozeroy', name="การทรุดตัว",
-                               line=dict(color="#4facfe", width=3)))
-    fig2.add_hline(y=Sfinal_cm, line_dash="dash", line_color="#c0203a",
+                               line=dict(color="#4A7C6F", width=3), fillcolor="rgba(74,124,111,0.18)"))
+    fig2.add_hline(y=Sfinal_cm, line_dash="dash", line_color="#8B3A1E",
                    annotation_text=f"Sfinal = {Sfinal_cm:.1f} cm")
     fig2.update_layout(
         template="plotly_white",
@@ -551,6 +628,8 @@ with tab3:
         height=420,
         margin=dict(t=30, l=10, r=10, b=10),
         font=dict(family="Kanit"),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="#FFFCF6",
     )
     st.markdown('<div class="section-pill pill-green">🏗️ การทรุดตัวตามเวลา</div>', unsafe_allow_html=True)
     st.plotly_chart(fig2, use_container_width=True)
@@ -559,6 +638,7 @@ with tab3:
 # TAB 4: SETTLEMENT
 # ------------------------------------------------------------
 with tab4:
+    mascot_bubble("soil", "ดินหนักแค่ไหน ยุบตัวไปเท่าไหร่แล้ว มาดูตัวเลขกันครับ 🌱", size=56)
     st.markdown('<div class="section-pill pill-pink">🏗️ การคำนวณระดับการยุบตัวของดิน</div>', unsafe_allow_html=True)
     st.latex(r"S_{final} = H \cdot \frac{C_c}{1+e_0} \cdot \log\left(\frac{\sigma_0' + \Delta\sigma}{\sigma_0'}\right)")
     st.latex(r"S_t = U_{av} \times S_{final}")
@@ -633,11 +713,11 @@ with tab5:
                 "หรือใช้วัสดุที่มีค่าการซึมน้ำสูงขึ้น (เพิ่ม km)")
 
         if L < 0.1:
-            mascot_bubble("cat", "ชั้นทรายระบายน้ำได้คล่องมาก น้ำจาก PVD ขึ้นมาถึงผิวดินได้ไว ✨", size=56)
+            mascot_bubble("drain", "ชั้นทรายระบายน้ำได้คล่องมาก น้ำจาก PVD ขึ้นมาถึงผิวดินได้ไว ✨", size=56)
         elif L < 1:
-            mascot_bubble("bear", "พอไหวอยู่ค่ะ แต่ลองเพิ่มความหนาทรายอีกนิดจะยิ่งชัวร์ 🧸", size=56)
+            mascot_bubble("soil", "พอไหวอยู่ครับ แต่ลองเพิ่มความหนาทรายอีกนิดจะยิ่งชัวร์ 🌱", size=56)
         else:
-            mascot_bubble("panda", "โอ้โห L สูงไปหน่อยนะ 🐼 น้ำอาจระบายไม่ทัน ลองปรับ Sand Mat ก่อนนะคะ", size=56)
+            mascot_bubble("engineer", "โอ้โห L สูงไปหน่อยนะครับ 👷 น้ำอาจระบายไม่ทัน ลองปรับ Sand Mat ก่อนนะ", size=56)
     else:
         st.warning("ติ๊กเลือก 'ตรวจสอบ Sand Mat' ในแถบด้านซ้ายเพื่อคำนวณ")
 
