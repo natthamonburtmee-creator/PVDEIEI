@@ -364,7 +364,6 @@ def final_settlement(H_cm, Cc, e0, sigma0, dsigma):
 # SIDEBAR — INPUT PARAMETERS
 # ============================================================
 with st.sidebar:
-
     """, unsafe_allow_html=True)
     st.markdown("## ⚙️ พารามิเตอร์ออกแบบ")
 
@@ -403,8 +402,6 @@ with st.sidebar:
         B_full = st.number_input("ความกว้างเต็มของพื้นที่ถม/สนาม, 2B (m)", 1.0, 500.0, 80.0, 1.0)
         km = st.number_input("สปส. การซึมน้ำของทราย, km (cm/s)", 1e-5, 1.0, 1e-3, format="%.1e")
         kc = st.number_input("สปส. การซึมน้ำของดินเหนียว, kc (cm/s)", 1e-9, 1.0, 1e-7, format="%.1e")
-
-
 # ============================================================
 # CALCULATIONS
 # ============================================================
