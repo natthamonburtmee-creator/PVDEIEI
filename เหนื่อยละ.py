@@ -295,27 +295,6 @@ section[data-testid="stSidebar"] .stRadio label {
 div[data-testid="stMetricValue"] { color:#4A2E1E; }
 </style>
 """, unsafe_allow_html=True)
-
-# ============================================================
-# HERO HEADER
-# ============================================================
-_hero_mascot = mascot_svg("engineer", 92)
-st.markdown(f"""
-<div class="hero" style="position:relative; overflow:visible;">
-    <div class="badge">GROUND IMPROVEMENT • GEOTECHNICAL DESIGN TOOL</div>
-    <h1>🧊 PVD Design Studio</h1>
-    <p>โปรแกรมออกแบบท่อระบายน้ำแนวดิ่งสำเร็จรูป (Prefabricated Vertical Drains)
-    ตามวิธีของ Barron (1948) • Terzaghi • Carillo (1942)</p>
-    <div style="position:absolute; top:-14px; right:22px; background:#FFFCF6; border-radius:16px;
-                padding:6px; box-shadow:0 8px 20px rgba(107,66,38,0.30); transform: rotate(-3deg);">
-        {_hero_mascot}
-    </div>
-</div>
-""", unsafe_allow_html=True)
-
-mascot_bubble("engineer", "สวัสดีครับ! 👷‍♂️ ผมวิศวกรผู้ช่วย กรอกพารามิเตอร์ทางซ้ายมือ แล้วมาออกแบบ PVD กันเลย!", size=58)
-
-
 # ============================================================
 # CORE ENGINEERING FUNCTIONS
 # ============================================================
@@ -378,14 +357,6 @@ def final_settlement(H_cm, Cc, e0, sigma0, dsigma):
 # ============================================================
 with st.sidebar:
     _side_mascot = mascot_svg("soil", 84)
-    st.markdown(f"""
-    <div style="text-align:center; margin-bottom:6px;">
-        <div style="background:rgba(255,249,240,0.14); display:inline-block; border-radius:16px; padding:6px;">
-            {_side_mascot}
-        </div>
-        <div style="color:#E3C9A3; font-size:0.82rem; margin-top:4px;">น้องดินอ่อน ผู้ช่วยออกแบบ 🌱</div>
-    </div>
-    """, unsafe_allow_html=True)
     st.markdown("## ⚙️ พารามิเตอร์ออกแบบ")
 
     st.markdown("### 🧱 ชั้นดิน (Soil Layer)")
