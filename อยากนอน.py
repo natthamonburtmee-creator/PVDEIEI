@@ -377,12 +377,7 @@ def final_settlement(H_cm, Cc, e0, sigma0, dsigma):
 # SIDEBAR — INPUT PARAMETERS
 # ============================================================
 with st.sidebar:
-    _side_mascot = mascot_svg("soil", 84)
     st.markdown(f"""
-    <div style="text-align:center; margin-bottom:6px;">
-        <div style="background:rgba(255,249,240,0.14); display:inline-block; border-radius:16px; padding:6px;">
-            {_side_mascot}
-        </div>
         <div style="color:#E3C9A3; font-size:0.82rem; margin-top:4px;">น้องดินอ่อน ผู้ช่วยออกแบบ 🌱</div>
     </div>
     """, unsafe_allow_html=True)
