@@ -300,8 +300,6 @@ div[data-testid="stMetricValue"] { color:#4A2E1E; }
 # HERO HEADER
 # ============================================================
 st.markdown(f"""
-_hero_mascot = mascot_svg("engineer",92)
-<div class="hero" style="position:relative; overflow:visible;">
     <div class="badge">GROUND IMPROVEMENT • GEOTECHNICAL DESIGN TOOL</div>
     <h1>🧊 PVD Design Studio</h1>
     <p>โปรแกรมออกแบบท่อระบายน้ำแนวดิ่งสำเร็จรูป (Prefabricated Vertical Drains)
