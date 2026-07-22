@@ -32,112 +32,122 @@ st.set_page_config(
 def mascot_svg(kind="engineer", size=110):
     """
     Returns an inline SVG of a simple, original cute mascot themed around
-    civil engineering / geotechnical work.
+    civil engineering / geotechnical work — drawn in a blocky, angular
+    (low-poly) cute style.
     kind: 'engineer' | 'soil' | 'drain' | 'surveyor'
     """
     eye_color = "#2E2E38"
 
     if kind == "engineer":
-        # cute engineer face with a yellow hard hat + safety vest collar
+        # blocky engineer face with a square-ish hard hat + angular vest collar
         skin = "#FFDCB0"
         hat = "#FFC93C"
         hat_shade = "#E8A800"
         vest = "#FF7A3D"
         svg = f'''
         <svg width="{size}" height="{size}" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <!-- vest collar -->
-            <path d="M28 108 Q60 122 92 108 L86 96 Q60 106 34 96 Z" fill="{vest}"/>
-            <rect x="55" y="94" width="10" height="16" fill="#fff3" />
-            <!-- face -->
-            <circle cx="60" cy="66" r="42" fill="{skin}"/>
-            <!-- hard hat -->
-            <path d="M20 52 Q60 8 100 52 Q100 58 92 58 L28 58 Q20 58 20 52 Z" fill="{hat}"/>
-            <rect x="16" y="52" width="88" height="10" rx="5" fill="{hat_shade}"/>
-            <circle cx="60" cy="30" r="4" fill="{hat_shade}"/>
-            <!-- eyes -->
-            <circle cx="44" cy="66" r="5.5" fill="{eye_color}"/>
-            <circle cx="76" cy="66" r="5.5" fill="{eye_color}"/>
-            <circle cx="46" cy="64" r="1.6" fill="white"/>
-            <circle cx="78" cy="64" r="1.6" fill="white"/>
+            <!-- vest collar (angular) -->
+            <polygon points="24,110 60,120 96,110 88,92 60,100 32,92" fill="{vest}"/>
+            <rect x="53" y="90" width="14" height="20" fill="#ffffff40"/>
+            <!-- face: blocky octagon -->
+            <polygon points="34,20 86,20 100,34 100,86 86,100 34,100 20,86 20,34"
+                     fill="{skin}"/>
+            <!-- hard hat: angular dome + brim -->
+            <polygon points="18,46 60,10 102,46" fill="{hat}"/>
+            <rect x="14" y="42" width="92" height="12" fill="{hat_shade}"/>
+            <rect x="54" y="16" width="12" height="10" fill="{hat_shade}"/>
+            <!-- eyes: squares -->
+            <rect x="38" y="54" width="12" height="12" fill="{eye_color}"/>
+            <rect x="70" y="54" width="12" height="12" fill="{eye_color}"/>
+            <rect x="41" y="57" width="4" height="4" fill="white"/>
+            <rect x="73" y="57" width="4" height="4" fill="white"/>
             <!-- blush -->
-            <ellipse cx="34" cy="78" rx="6" ry="4" fill="#FF9E80" opacity="0.6"/>
-            <ellipse cx="86" cy="78" rx="6" ry="4" fill="#FF9E80" opacity="0.6"/>
-            <!-- smile -->
-            <path d="M48 82 Q60 92 72 82" stroke="{eye_color}" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <polygon points="24,72 36,72 32,82 22,82" fill="#FF9E80" opacity="0.6"/>
+            <polygon points="84,72 96,72 98,82 88,82" fill="#FF9E80" opacity="0.6"/>
+            <!-- mouth: angular smile -->
+            <polyline points="44,80 60,90 76,80" fill="none" stroke="{eye_color}"
+                      stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         '''
 
     elif kind == "soil":
-        # cute layered soil / clay blob with a little green sprout
+        # blocky layered soil hexagon with a low-poly sprout
         soil1 = "#C08552"
         soil2 = "#A9683A"
+        soil3 = "#8B5E34"
         sprout = "#5FBE72"
         svg = f'''
         <svg width="{size}" height="{size}" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <!-- sprout -->
-            <path d="M60 22 Q52 8 40 12 Q48 22 60 22 Z" fill="{sprout}"/>
-            <path d="M60 22 Q68 6 82 10 Q72 22 60 22 Z" fill="{sprout}"/>
-            <rect x="57" y="18" width="6" height="16" rx="3" fill="#3E8E52"/>
-            <!-- blob body (layered soil) -->
-            <path d="M18 70 Q18 40 60 40 Q102 40 102 70 Q102 100 60 100 Q18 100 18 70 Z" fill="{soil1}"/>
-            <path d="M18 78 Q60 92 102 78 L102 82 Q60 96 18 82 Z" fill="{soil2}"/>
-            <!-- eyes -->
-            <circle cx="44" cy="66" r="5.5" fill="{eye_color}"/>
-            <circle cx="76" cy="66" r="5.5" fill="{eye_color}"/>
-            <circle cx="46" cy="64" r="1.6" fill="white"/>
-            <circle cx="78" cy="64" r="1.6" fill="white"/>
+            <!-- sprout leaves (triangles) -->
+            <polygon points="60,22 40,8 46,26" fill="{sprout}"/>
+            <polygon points="60,22 80,6 76,26" fill="{sprout}"/>
+            <rect x="56" y="16" width="8" height="14" fill="#3E8E52"/>
+            <!-- hexagonal soil block, layered -->
+            <polygon points="60,26 96,44 96,84 60,102 24,84 24,44" fill="{soil1}"/>
+            <polygon points="24,68 96,68 96,84 60,102 24,84" fill="{soil2}"/>
+            <polygon points="24,84 60,102 96,84 96,92 60,110 24,92" fill="{soil3}"/>
+            <!-- eyes: squares -->
+            <rect x="42" y="54" width="12" height="12" fill="{eye_color}"/>
+            <rect x="66" y="54" width="12" height="12" fill="{eye_color}"/>
+            <rect x="45" y="57" width="4" height="4" fill="white"/>
+            <rect x="69" y="57" width="4" height="4" fill="white"/>
             <!-- blush -->
-            <ellipse cx="32" cy="76" rx="6" ry="4" fill="#FFD9A0" opacity="0.7"/>
-            <ellipse cx="88" cy="76" rx="6" ry="4" fill="#FFD9A0" opacity="0.7"/>
-            <!-- smile -->
-            <path d="M48 80 Q60 88 72 80" stroke="{eye_color}" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <polygon points="30,66 40,66 37,74 28,74" fill="#FFD9A0" opacity="0.8"/>
+            <polygon points="80,66 90,66 92,74 83,74" fill="#FFD9A0" opacity="0.8"/>
+            <!-- mouth -->
+            <polyline points="48,72 60,80 72,72" fill="none" stroke="{eye_color}"
+                      stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         '''
 
     elif kind == "drain":
-        # cute PVD strip drain character (striped core + geotextile look)
+        # blocky PVD strip-drain character (angular core + geotextile stripes)
         body = "#4FC3E8"
+        body_shade = "#3AA9CC"
         stripe = "#E8F8FF"
         svg = f'''
         <svg width="{size}" height="{size}" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <!-- flat drain body -->
-            <rect x="30" y="14" width="60" height="96" rx="16" fill="{body}"/>
-            <rect x="40" y="24" width="6" height="76" rx="3" fill="{stripe}" opacity="0.85"/>
-            <rect x="52" y="24" width="6" height="76" rx="3" fill="{stripe}" opacity="0.85"/>
-            <rect x="64" y="24" width="6" height="76" rx="3" fill="{stripe}" opacity="0.85"/>
-            <rect x="76" y="24" width="6" height="76" rx="3" fill="{stripe}" opacity="0.85"/>
+            <!-- flat drain body: blocky panel with cut corners -->
+            <polygon points="34,14 86,14 96,24 96,100 86,110 34,110 24,100 24,24" fill="{body}"/>
+            <polygon points="24,24 34,14 34,110 24,100" fill="{body_shade}"/>
+            <rect x="42" y="24" width="7" height="76" fill="{stripe}" opacity="0.9"/>
+            <rect x="54" y="24" width="7" height="76" fill="{stripe}" opacity="0.9"/>
+            <rect x="66" y="24" width="7" height="76" fill="{stripe}" opacity="0.9"/>
+            <rect x="78" y="24" width="7" height="76" fill="{stripe}" opacity="0.9"/>
             <!-- face -->
-            <circle cx="48" cy="56" r="5" fill="{eye_color}"/>
-            <circle cx="72" cy="56" r="5" fill="{eye_color}"/>
-            <circle cx="49.5" cy="54.3" r="1.5" fill="white"/>
-            <circle cx="73.5" cy="54.3" r="1.5" fill="white"/>
-            <ellipse cx="40" cy="66" rx="5" ry="3.4" fill="#FFAFCF" opacity="0.75"/>
-            <ellipse cx="80" cy="66" rx="5" ry="3.4" fill="#FFAFCF" opacity="0.75"/>
-            <path d="M50 70 Q60 78 70 70" stroke="{eye_color}" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <rect x="42" y="50" width="11" height="11" fill="{eye_color}"/>
+            <rect x="67" y="50" width="11" height="11" fill="{eye_color}"/>
+            <rect x="45" y="53" width="4" height="4" fill="white"/>
+            <rect x="70" y="53" width="4" height="4" fill="white"/>
+            <polygon points="36,64 46,64 43,72 34,72" fill="#FFAFCF" opacity="0.8"/>
+            <polygon points="74,64 84,64 86,72 77,72" fill="#FFAFCF" opacity="0.8"/>
+            <polyline points="48,66 60,74 72,66" fill="none" stroke="{eye_color}"
+                      stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         '''
 
-    else:  # "surveyor" — cute character with hard hat + clipboard/level
+    else:  # "surveyor" — blocky character with hard hat + angular clipboard
         skin = "#FFDCB0"
         hat = "#3DDC97"
         hat_shade = "#26A876"
         svg = f'''
         <svg width="{size}" height="{size}" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="60" cy="66" r="42" fill="{skin}"/>
-            <path d="M20 52 Q60 8 100 52 Q100 58 92 58 L28 58 Q20 58 20 52 Z" fill="{hat}"/>
-            <rect x="16" y="52" width="88" height="10" rx="5" fill="{hat_shade}"/>
-            <!-- clipboard -->
-            <rect x="82" y="70" width="26" height="32" rx="4" fill="#ffffff" stroke="{hat_shade}" stroke-width="3"/>
-            <line x1="88" y1="80" x2="102" y2="80" stroke="{hat_shade}" stroke-width="2"/>
-            <line x1="88" y1="88" x2="102" y2="88" stroke="{hat_shade}" stroke-width="2"/>
-            <line x1="88" y1="96" x2="98" y2="96" stroke="{hat_shade}" stroke-width="2"/>
-            <circle cx="44" cy="66" r="5.5" fill="{eye_color}"/>
-            <circle cx="76" cy="66" r="5.5" fill="{eye_color}"/>
-            <circle cx="46" cy="64" r="1.6" fill="white"/>
-            <circle cx="78" cy="64" r="1.6" fill="white"/>
-            <ellipse cx="34" cy="78" rx="6" ry="4" fill="#FF9E80" opacity="0.6"/>
-            <ellipse cx="86" cy="78" rx="6" ry="4" fill="#FF9E80" opacity="0.6"/>
-            <path d="M48 82 Q60 92 72 82" stroke="{eye_color}" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <polygon points="34,20 86,20 100,34 100,86 86,100 34,100 20,86 20,34"
+                     fill="{skin}"/>
+            <polygon points="18,46 60,10 102,46" fill="{hat}"/>
+            <rect x="14" y="42" width="92" height="12" fill="{hat_shade}"/>
+            <!-- clipboard (angular) -->
+            <rect x="80" y="66" width="28" height="34" fill="#ffffff" stroke="{hat_shade}" stroke-width="4"/>
+            <rect x="86" y="76" width="16" height="4" fill="{hat_shade}"/>
+            <rect x="86" y="84" width="16" height="4" fill="{hat_shade}"/>
+            <rect x="86" y="92" width="10" height="4" fill="{hat_shade}"/>
+            <rect x="38" y="54" width="12" height="12" fill="{eye_color}"/>
+            <rect x="70" y="54" width="12" height="12" fill="{eye_color}"/>
+            <rect x="41" y="57" width="4" height="4" fill="white"/>
+            <rect x="73" y="57" width="4" height="4" fill="white"/>
+            <polygon points="24,72 36,72 32,82 22,82" fill="#FF9E80" opacity="0.6"/>
+            <polyline points="44,80 60,90 76,80" fill="none" stroke="{eye_color}"
+                      stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         '''
     return svg
@@ -147,13 +157,13 @@ def mascot_bubble(kind, message, size=64, align="left"):
     """Renders a cute mascot next to a speech-bubble message."""
     svg = mascot_svg(kind, size)
     direction = "row" if align == "left" else "row-reverse"
-    radius = "18px 18px 18px 4px" if align == "left" else "18px 18px 4px 18px"
+    radius = "6px 18px 18px 18px" if align == "left" else "18px 6px 18px 18px"
     st.markdown(f"""
     <div style="display:flex; flex-direction:{direction}; align-items:center; gap:10px; margin:10px 0;">
         <div style="flex-shrink:0;">{svg}</div>
-        <div style="background:white; border-radius:{radius}; padding:10px 16px;
-                    box-shadow:0 4px 14px rgba(30,40,90,0.10); font-size:0.92rem; color:#3a3d5c;
-                    border:1px solid rgba(120,120,180,0.10);">
+        <div style="background:#FFFCF6; border-radius:{radius}; padding:10px 16px;
+                    box-shadow:0 4px 14px rgba(107,66,38,0.12); font-size:0.92rem; color:#4A3624;
+                    border:1px solid rgba(139,94,52,0.16);">
             {message}
         </div>
     </div>
@@ -296,8 +306,8 @@ st.markdown(f"""
     <h1>🧊 PVD Design Studio</h1>
     <p>โปรแกรมออกแบบท่อระบายน้ำแนวดิ่งสำเร็จรูป (Prefabricated Vertical Drains)
     ตามวิธีของ Barron (1948) • Terzaghi • Carillo (1942)</p>
-    <div style="position:absolute; top:-14px; right:22px; background:white; border-radius:50%;
-                padding:6px; box-shadow:0 8px 20px rgba(30,40,90,0.25);">
+    <div style="position:absolute; top:-14px; right:22px; background:#FFFCF6; border-radius:16px;
+                padding:6px; box-shadow:0 8px 20px rgba(107,66,38,0.30); transform: rotate(-3deg);">
         {_hero_mascot}
     </div>
 </div>
@@ -370,7 +380,7 @@ with st.sidebar:
     _side_mascot = mascot_svg("soil", 84)
     st.markdown(f"""
     <div style="text-align:center; margin-bottom:6px;">
-        <div style="background:rgba(255,255,255,0.12); display:inline-block; border-radius:50%; padding:6px;">
+        <div style="background:rgba(255,249,240,0.14); display:inline-block; border-radius:16px; padding:6px;">
             {_side_mascot}
         </div>
         <div style="color:#E3C9A3; font-size:0.82rem; margin-top:4px;">น้องดินอ่อน ผู้ช่วยออกแบบ 🌱</div>
